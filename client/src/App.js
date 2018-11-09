@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
-import AppNavbar from "./components/AppNavbar";
-import ShoppingList from "./components/ShoppingList";
+import React, { Component } from 'react'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css'
+import AppNavbar from './components/AppNavbar'
+import ShoppingList from './components/ShoppingList'
 
 class App extends Component {
   render() {
@@ -11,8 +11,8 @@ class App extends Component {
         <AppNavbar />
         <ShoppingList />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App

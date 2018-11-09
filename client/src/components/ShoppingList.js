@@ -1,43 +1,43 @@
-import React, { Component } from "react";
-import { Container, ListGroup, ListGroupItem, Button } from "reactstrap";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import uuid from "uuid";
+import React, { Component } from 'react'
+import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap'
+import { CSSTransition, TransitionGroup } from 'react-transition-group'
+import uuid from 'uuid'
 
 class ShoppingList extends Component {
   state = {
     items: [
       {
         id: uuid(),
-        name: "Eggs"
+        name: 'Eggs'
       },
       {
         id: uuid(),
-        name: "Milk"
+        name: 'Milk'
       },
       {
         id: uuid(),
-        name: "Steak"
+        name: 'Steak'
       },
       {
         id: uuid(),
-        name: "Water"
+        name: 'Water'
       }
     ]
-  };
+  }
 
   render() {
-    const { items } = this.state;
+    const { items } = this.state
     return (
       <Container>
         <Button
           color="dark"
-          style={{ marginBottom: "2rem" }}
+          style={{ marginBottom: '2rem' }}
           onClick={() => {
-            const name = prompt("Enter Item");
+            const name = prompt('Enter Item')
             if (name) {
               this.setState(state => ({
                 items: [...state.items, { id: uuid(), name }]
-              }));
+              }))
             }
           }}
         >
@@ -56,7 +56,7 @@ class ShoppingList extends Component {
                       onClick={() => {
                         this.setState(state => ({
                           items: state.items.filter(item => item.id !== id)
-                        }));
+                        }))
                       }}
                     >
                       &times;
@@ -68,8 +68,8 @@ class ShoppingList extends Component {
           </TransitionGroup>
         </ListGroup>
       </Container>
-    );
+    )
   }
 }
 
-export default ShoppingList;
+export default ShoppingList
