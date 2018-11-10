@@ -1,33 +1,21 @@
 import React, { Component } from 'react'
 import { Container, ListGroup, ListGroupItem, Button } from 'reactstrap'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
-import uuid from 'uuid'
-import {connect} from 'react-redux'
-import {getItems} from '../actions/itemActions'
+import { connect } from 'react-redux'
+import { getItems, deleteItem } from '../actions/itemActions'
 import PropTypes from 'prop-types'
 
 class ShoppingList extends Component {
-  componentDidMount(){
-    this.props.getItems();
+  componentDidMount() {
+    this.props.getItems()
+  }
+  onDeleteClick = id => {
+    this.props.deleteItem(id)
   }
   render() {
     const { items } = this.props.item
     return (
       <Container>
-        <Button
-          color="dark"
-          style={{ marginBottom: '2rem' }}
-          onClick={() => {
-            const name = prompt('Enter Item')
-            if (name) {
-              this.setState(state => ({
-                items: [...state.items, { id: uuid(), name }]
-              }))
-            }
-          }}
-        >
-          Add Item
-        </Button>
         <ListGroup>
           <TransitionGroup className="shopping-list">
             {items &&
@@ -38,11 +26,7 @@ class ShoppingList extends Component {
                       className="remove-btn"
                       color="danger"
                       size="sm"
-                      onClick={() => {
-                        this.setState(state => ({
-                          items: state.items.filter(item => item.id !== id)
-                        }))
-                      }}
+                      onClick={this.onDeleteClick.bind(this, id)}
                     >
                       &times;
                     </Button>
@@ -63,10 +47,12 @@ ShoppingList.propTypes = {
 }
 
 const mapStateToProps = state => {
-  return{
+  return {
     item: state.item
   }
 }
 
-
-export default connect(mapStateToProps, {getItems})(ShoppingList)
+export default connect(
+  mapStateToProps,
+  { getItems, deleteItem }
+)(ShoppingList)
